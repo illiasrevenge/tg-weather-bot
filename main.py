@@ -39,14 +39,18 @@ async def handle_location(update: Update, context):
     await update.message.reply_text(response)
 
 
-if __name__ == '__main__':
-    print("Bot has started...")
+async def handle_error(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print(f'Update causes the following error {context.error}')
 
+
+if __name__ == '__main__':
     app = Application.builder().token(constants.API_KEY).build()
 
     app.add_handler(CommandHandler('start', start_command))
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
     app.add_handler(MessageHandler(filters.LOCATION, handle_location))
+
+    app.add_error_handler(handle_error)
 
     app.run_webhook(listen="0.0.0.0",
                     port=int(os.environ.get('PORT', 5000)),

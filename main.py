@@ -52,7 +52,4 @@ if __name__ == '__main__':
 
     app.add_error_handler(handle_error)
 
-    app.run_webhook(listen="0.0.0.0",
-                    port=int(os.environ.get('PORT', 5000)),
-                    url_path=constants.API_KEY,
-                    webhook_url= + constants.API_KEY)
+    app.run_polling()

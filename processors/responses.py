@@ -1,24 +1,9 @@
-import json
-from datetime import datetime
 import requests
-
 import constants
 
 
 def sample_response(input_text: str) -> str:
-    formatted_message = str(input_text).lower()
-
-    if formatted_message in ("hello", "hi"):
-        return "Hello! It's my bot"
-
-    if formatted_message in ("time", "date"):
-        now = datetime.now()
-
-        date_time = now.strftime("%d/%m/%y")
-
-        return str(date_time)
-
-    return "Sorry i don't quite understand you"
+    return "Поки що я цього не розумію"
 
 
 async def handle_location(latitude: str, longitude: str) -> str:

@@ -23,8 +23,6 @@ async def handle_message(update: Update, context):
     text = str(update.message.text).lower()
 
     response = responses.sample_response(text)
-
-    print(f'User ({update.message.chat.id}) in {update.message.chat.type}: {text}')
     await update.message.reply_text(response)
 
 

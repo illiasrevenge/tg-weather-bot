@@ -1,10 +1,12 @@
 import constants
-import handlers.message_handlers as handlers
+from handlers.message_handlers import MessageHandlers
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 
 
 if __name__ == '__main__':
+    # Telegram bot related stuff
     app = Application.builder().token(constants.API_KEY).build()
+    handlers = MessageHandlers()
 
     app.add_handler(CommandHandler('start', handlers.start_command))
     app.add_handler(MessageHandler(filters.TEXT, handlers.handle_message))

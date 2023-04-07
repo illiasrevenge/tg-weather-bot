@@ -1,3 +1,5 @@
+import os
+
 import constants
 import responses as responses
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
@@ -46,4 +48,7 @@ if __name__ == '__main__':
     app.add_handler(MessageHandler(filters.TEXT, handle_message))
     app.add_handler(MessageHandler(filters.LOCATION, handle_location))
 
-    app.run_polling(poll_interval=1)
+    app.run_webhook(listen="0.0.0.0",
+                    port=int(os.environ.get('PORT', 5000)),
+                    url_path=constants.API_KEY,
+                    webhook_url= + constants.API_KEY)

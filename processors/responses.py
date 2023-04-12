@@ -15,7 +15,6 @@ class Responses:
         return "Поки що я цього не розумію"
 
     async def handle_location(self, user_id: str, latitude: str, longitude: str) -> str:
-
         user_exists_flag = self.__user_exists(user_id)
 
         if user_exists_flag is not True:
@@ -33,10 +32,7 @@ class Responses:
         if current_degrees % 2 == 0:
             degrees_text = 'градуси'
 
-        if current_degrees > 0:
-            degrees_text += ' тепла'
-        else:
-            degrees_text += ' морозу'
+        degrees_text += ' тепла' if current_degrees >= 0 else degrees_text + ' морозу'
 
         return f'Зараз на вулиці {current_weather} і {current_degrees} {degrees_text}'
 

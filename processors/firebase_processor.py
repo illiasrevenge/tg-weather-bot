@@ -14,17 +14,18 @@ class FirebaseProcessor:
             'databaseURL': 'https://python-tg-bot-default-rtdb.europe-west1.firebasedatabase.app'
         })
 
-        self.db_ref = db.reference('py/')
+        self.db_ref = db.reference('py/users/')
 
     def check_if_user_exists(self, user_id: str) -> bool:
-        print('Checking db...')
-        data = self.db_ref.get(f'users/{user_id}')
+        test = '122131221'
+        data = self.db_ref.child(f'{user_id}').get()
+        print(data)
 
         return data is not None
 
     def add_user_data_to_db(self, user_id: str, lat: str, long: str):
         print('Adding user to db...')
-        data = self.db_ref.child(f'users/{user_id}')
+        data = self.db_ref.child(f'{user_id}')
         data.set({
             'userId': user_id,
             'latitude': lat,
